@@ -1,17 +1,11 @@
-= Apache Isis – Closing the Architecture/Code Gap
+= Busy Java Developer’s Hand-on of DDD with Apache Isis
 
 This repository holds the slides for the
-link:https://jaxlondon.com/session/apache-isis-closing-the-architecturecode-gap/[Apache Isis – Closing the Architecture/Code Gap] session, run at
-link:https://jaxlondon.com/[JAX London 2016].
+link:http://ncrafts.io/speaker/dkhaywood#nc18-dha01[Busy Java Developer’s Hand-on of DDD with Apache Isis] session, run at
+link:https://ncrafts.io/[NCrafts 2018].
 
 
-Being presented by link:https://jaxlondon.com/speaker/dan-haywood/[Dan Haywood] and link:https://jaxlondon.com/speaker/eoin-woods/[Eoin Woods].
-
-
-
-== Publication
-
-The slides will be/are published link:http://danhaywood.com/jaxlondon2016[here].
+Being presented by link:http://ncrafts.io/speaker/dkhaywood[Dan Haywood] .
 
 
 
@@ -36,10 +30,10 @@ or in long-hand:
 
 [source,bash]
 ----
-./gradlew --offline clean asciidoctor && pushd build/asciidoc/revealjs && python -m SimpleHTTPServer 8000
+./gradlew --offline asciidoctor &&  python -m webbrowser -t http://localhost:4000  && pushd build/asciidoc/revealjs && python -m http.server 4000 && popd
 ----
 
-Then open link:http://localhost:8000/index.html[http://localhost:8000/index.html]
+This will open up the web browser at link:http://localhost:4000/index.html[]
 
 
 

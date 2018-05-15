@@ -1,6 +1,6 @@
-= Apache Isis - Closing the Architecture/Code&nbsp;Gap
+= A Busy Java Developer’s Hands-on of DDD with Apache Isis
 
-Dan Haywood & Eoin Woods
+Dan Haywood
 
 
 :backend: revealjs
@@ -12,60 +12,23 @@ ifndef::sourcedir[:sourcedir: ../java]
 
 
 
-[NOTE.speaker]
-====
-Original abstract:
-
-* A problem all software projects encounter is making sure that code reflects the desired architectural principles/constraints. Many approaches have been tested, but the practical unification of architecture and code still eludes us.
-
-* Apache Isis takes a different approach, forcibly separating architectural constructs from domain model, combining the two at runtime. It promises to free the developer from writing “boilerplate” and focus on the domain model instead.
-
-* In this talk we’re going to explore these architectural issues and demonstrate how the framework addresses these.
-====
 
 
 
+== About Me
 
-== About Us
+* independent consultant & developer
 
-* *Eoin Woods* is CTO at Endava, a European IT services company.  He is also the author of “Software Systems Architecture”
+* got interested in this approach at a conference in 2002
 
-* *Dan Haywood* is an independent consultant & developer specializing in domain driven design.  He is an Apache member and PMC chair for Apache Isis
+* member of ASF and committer for Apache Isis
 
-* We met and worked together in the 90s at Sybase, and have (as friends) tracked each other's respective careers ever since.
+* (since 2004) worked on the largest naked objects system at DSP, a government department in Ireland
 
-
-[NOTE.speaker]
---
-TODO: let's sprinkle some of the trade-offs throughout, which allows Eoin to put the thing into a larger context
---
+* (since 2012) worked on Estatio, an open source app for estate management based on Apache Isis
 
 
 
-
-[.eoin]
-== Problem of Successful Systems
-
-Long lived applications suffer from architectural problems.
-
-* the architectural style erodes until it is hard to discern
-* not clear how new features fit in the architecture
-* pattern implementations weaken and become unclear
-* coherency weakens due to adhoc architecture evolution
-
-_Change becomes difficult as implementation and architecture drift apart due to them being different artefact groups._
-
-
-[.eoin]
-== Specific Problems
-
-* Business logic drifts into adjacent layers
-* Domain model becomes unwieldy ("tactical" changes)
-* Aspects of the architecture forgotten or misinterpreted
-* Rushed changes create mismatched components
-* New components difficult to test, deploy or support
-* Utility modules grow in size and scope
-* Decision rationale forgotten leading to poor evolution
 
 
 [.dan]
@@ -81,7 +44,6 @@ _Change becomes difficult as implementation and architecture drift apart due to 
 --
 TODO: quote Trvyge: what MVC was meant to be, "we never got around to it"
 --
-
 
 
 
@@ -148,92 +110,10 @@ image::what-is-nakedobjects/incredible-machine.png[width=650px]
 
 
 
-[.eoin]
-== Generic UI/UX
-
-Generic UI provides a framework generated UI "for free"
-
-* A good UI is expensive and difficult to get right
-* UI and UX skills relatively rare in most organisations
-* Difficult to maintain a consistent UI at scale
-* Avoiding custom code eases upgrade & replacement
-* Generated UI prevents accidental coupling
-
-_Tradeoff is the difficulty of supporting special cases_
-
-
-[NOTE.speaker]
-====
-some discussion on why a generic UI might be useful/beneficial.
-
-Things eoin mentioned last Friday included: "Why's this useful?  Because we can get a meaningful user-interface "for free".  Valuable because UX/UI is expensive to develop, is difficult to get right, difficult to keep consistent, is a fashion item so the most important bit to ensure that there are no dependencies upon...
-
-also worth mentioning: provides is consistency throughout, with new features automatically available everywhere (eg hint support, icons via regex, calendars/maps)
-
-eoin: can we see an example of such a generic UI?
-====
-
-
-
-[.dan]
-=== Generic UIs are "good enough" for many applications
-
-* ... though it has, admittedly, been a journey to get them to that level!
-
-
-
-[NOTE.speaker]
-====
-dan: the irony of writing a naked objects framework if one is more interested in the domain than in the UI...
-====
-
-
-[.dan]
-[%notitle]
-=== 2005
-image::history/2003-dnd.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2006
-image::history/2005-dsfa.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2007
-image::history/2007-rcp.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2009
-image::history/2009-scimpi.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2013
-image::history/2013-TransportDemand.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2014
-image::history/2014-estatio.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2015
-image::history/2015-commplan.png[width=960px]
-
-[.dan]
-[%notitle]
-=== 2016
-image::history/2016-todoapp.png[width=960px]
-
-
-
 [.dan]
 == An example: Estatio
 
-* *_Estatio_* is an invoicing application for tenants within a shopping centre
+* Estatio is an invoicing application (out-bound to tenants within a shopping centre, inbound for suppliers)
 * Developed for Eurocommercial Properties, deployed to the three operating countries (Italy, France & Sweden)
 * The code also happens to be open source (on github)
 ** A useful "reference example" for the Apache Isis user community
@@ -247,119 +127,27 @@ image::history/2016-todoapp.png[width=960px]
 link:images/rad/estatio-resetDates.mp4[demo: UI derived from domain model]
 
 
+== Hands-on Tutorial
 
+The tutorial consists of:
 
-[.eoin]
-== Customizing the UI
+* step by step instructions at http://github.com/danhaywood/isis-petclinic-docs[]
 
-Generic UI can have advantages in development efficiency, UX consistency and future proofing. What are the trade offs?
+* solutions for each step at http://github.com/danhaywood/isis-petclinic-tutorial[]
 
-* How much control can an application have on its UI?
-* Can layout, look-and-feel, flow, colour be changed easily?
-* What if an application needs a new widget type entirely?
+Try the early exercises, to see how things fit together.
 
-[NOTE.speaker]
-====
-eoin: trade-offs, to what extent can this UI be customized?
-
-From Eoin: when I came to it, I wasn't quite sure what I was meant to say here, so I've asked some motivating questions around UI customisation.  If any are unhelpful we can field or remove them!
-
-Suggest hold back the question on alternative UIs to next section
-====
-
-
-[.dan]
-=== Customizing the UI
-
-
-* Use annotations, provide UI hints
-** eg `@ActionLayout` (vs `@Action`), `@MemberOrder`
-* Optional `.layout.xml` for each concrete class
-** basically a DSL, modelled on Bootstrap
-** reloaded dynamically
-* CSS
-** classes and Ids generated from the metamodel
-* Plugins to render maps, calendars, export as Excel etc.
-
+Thereafter, checkout the git tags that look interesting.
 
 
 
 [.dan]
-[%notitle]
-=== ... demo ...
-
-link:images/rad/estatio-layout.mp4[demo: customizing the UI using `.layout.xml`]
-
-
-
-
-[.eoin]
-== Other Cross-cutting Concerns
-
-* a generic UI treats the UI as a cross-cutting concern
-* enabled by the magic of a meta-model, other concerns can be tackled too
-** check & enforce patterns or constraints
-** add security automatically, audit trail
-** interface specifications, eg Swagger
-** i18n
-
-_Like a standardised version of aspects_
-
-
-
-
-[.dan]
-[%notitle]
-=== REST (Swagger)
-
-image::cross-cutting/swagger.png[width=960px]
-
-
-
-[.dan]
-[%notitle]
-=== Security
-
-link:images/cross-cutting/estatio-security.mp4[demo: security module role/permissions derived from metamodel]
-
-
-
-
-
-
-
-
-[.eoin]
-== Enterprise Architecture
-
-The "system of systems" forming the technology environment for an organisation.  Concerns include:
-
-* What is the functional scope of each system?
-* How do systems interact to support business processes?
-* How is data stored, mastered, owned, changed, accessed?
-* What technical standardisation is available/valuable?
-
-_Does Isis help the evolution of an enterprise architecture?_
-
-
-
-[.dan]
-=== Bounded contexts, standard interactions
+== Bounded contexts, standard interactions
 
 * Each system should have clear responsibilities
-** A bespoke app (as opposed to COTS systems) can be tailored precisely for its user base
+** A bespoke app (as opposed to a packaged/COTS system) can be tailored precisely for its user base
 * Multiple hooks (SPIs) at the application layer, domain layer, persistence layer
 ** In particular, interactions can be automatically published to other systems in the enterprise
-
-
-[.dan]
-=== Inferred commands
-
-* Each interaction (action invocation or property edit) can be reified into XML
-** persisted and then published onto an event bus, eg Apache Camel
-** we recommend "skinny" events, better separation of responsibilities
-* Also useful for profiling, auditing, replay/regressions
-** correlated with audit trail (ie cause/effect)
 
 
 [.dan]
@@ -413,55 +201,14 @@ public Invoice approve() {
 ----
 
 
-
 [.dan]
-=== PublisherService
+=== PublisherService SPI
 
 [source,java]
 ----
 public interface PublisherService {
     void publish(Interaction.Execution<?, ?> execution);
 }
-----
-
-
-
-
-[.dan .small]
-[%notitle]
-=== published xml
-
-
-[source,xml]
-----
-<ixn:interactionDto xmlns:com="http://isis.apache.org/schema/common"
-                    xmlns:cmd="http://isis.apache.org/schema/cmd"
-                    xmlns:ixn="http://isis.apache.org/schema/ixn">
-    <ixn:transactionId>929c2e7a-6318-4f4c-ab7b-96b3632d6731</ixn:transactionId>
-    <ixn:execution xsi:type="ixn:actionInvocationDto"
-            interactionType="action_invocation"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <ixn:sequence>0</ixn:sequence>
-        <ixn:target type="org.estatio.dom.invoice.Invoice" id="1"/>
-        <ixn:memberIdentifier>org.estatio.dom.invoice.Invoice#approve()</ixn:memberIdentifier>
-        <ixn:parameters/>
-        <ixn:returned type="reference" null="false">
-            <com:reference type="org.estatio.dom.invoice.Invoice" id="1"/>
-        </ixn:returned>
-        <ixn:user>estatio-admin</ixn:user>
-        <ixn:title>org.estatio.dom.invoice.Invoice:1: approve()</ixn:title>
-        <ixn:metrics>
-            <ixn:timings>
-                <com:startedAt>2016-09-30T13:57:19.825+01:00</com:startedAt>
-                <com:completedAt>2016-09-30T13:57:19.832+01:00</com:completedAt>
-            </ixn:timings>
-            <ixn:objectCounts>
-                <ixn:loaded before="4" after="6"/>
-                <ixn:dirtied before="0" after="1"/>
-            </ixn:objectCounts>
-        </ixn:metrics>
-    </ixn:execution>
-</ixn:interactionDto>
 ----
 
 
@@ -474,27 +221,33 @@ link:images/cross-cutting/estatio-publishing.mp4[demo: publishing an action, cro
 
 
 
-[.eoin]
-== Concluding
 
-Most projects build their own architecture framework
+[.dan]
+== Maintainability
 
-* This provides a lot of flexibility and control...
-* ... but also a lot of work
-* ... and the constant potential for inconsistency
+DDD systems tackle complex domains, so are (by definition) substantial investments.
+However:
 
-_By accepting the constraints of Apache Isis, the "architecture" comes for free and enforces true modularity and separation of concerns_
+* a good UI is expensive and difficult to get right, UI/UX skills relatively rare in most organisations
+* it's difficult to maintain a consistent UI at scale
+* a generated UI prevents accidental coupling
+
+A generic UI makes for maintainable systems
+
 
 
 
 
 [.dan]
-== Example Apps
+== Concluding
 
-* link:http://github.com/estatio/estatio[github.com/estatio/estatio]
-* link:http://github.com/incodehq/contactapp[github.com/incodehq/contactapp]
-* link:http://github.com/incodehq/contactapp[github.com/incodehq/colab2-exploration]
-* link:http://github.com/isisaddons/isis-app-todoapp[github.com/isisaddons/isis-app-todoapp]
+Apache Isis (and the naked objects pattern) enables:
+
+* rapid development - feedback loop to learn the domain
+* testable - necessary for complex domains
+* modular within the domain - avoid the "ball of mud"
+* architectural constraints / separation of concerns
+** intra-app (hexagonal architecture) and inter-app (BCs)
 
 
 
@@ -502,465 +255,28 @@ _By accepting the constraints of Apache Isis, the "architecture" comes for free 
 == Learning More
 
 * link:http://isis.apache.org[isis.apache.org]
-* link:http://www.isisaddons.org[www.isisaddons.org]
-* link:http://catalog.incode.org[catalog.incode.org]
+* link:http://platform.incode.org[platform.incode.org]
 
-* link:mailto:dan@haywood-associates.co.uk[dan@haywood-associates.co.uk] and *@dkhaywood*
-* link:mailto:Eoin.Woods@endava.com[eoin.woods@endava.com] and *@eoinwoodz*
+* link:mailto:dan@haywood-associates.co.uk[dan@haywood-associates.co.uk] and @dkhaywood
 
-* link:http://isis.apache.org/resources/thesis/Pawson-Naked-Objects-thesis.pdf[Richard Pawson's Naked Objects PhD thesis]
-* slide deck at link:http://github.com/danhaywood/jaxlondon2016[github.com/danhaywood/jaxlondon2016]
-
-
-
-
-
-[.eoin]
-== Appendix: Architectural Constraints
-
-Architecture & code diverge when it is hard to remember and implement the architectural constraints
-
-* Constraints are there to reduce implementation freedom
-** ... and allow focus on what is important
-* Hard to know how architectural constraints are realised
-* Frameworks such as Apache Isis aim to embody the constraints _within_ the framework
-
-_Try to make the "right" thing the "easy" thing_
-
-
-
-[.dan]
-[%notitle]
-=== hexagonal architecture
-
-image::what-is-nakedobjects/150.PNG[width=960px]
-
+* link:http://isis.apache.org/guides/ugfun/resources/core-concepts/Pawson-Naked-Objects-thesis.pdf[Richard Pawson's Naked Objects PhD thesis]
 
 
 
 
 
 [.dan]
-[%notitle]
-=== firewalls
+== Appendix: other screencasts
 
-image::architecture-constraints/180.png[width=960px]
+* link:images/alternatives/contactapp-1.mp4[example of a custom UI: contactapp]
 
+* link:images/cross-cutting/estatio-security.mp4[security within estatio]
 
+* link:images/feedback-loop/colab2.mp4[exploration (colab)]
 
+* link:images/rad/estatio-resetDates.mp4[rapid app dev: estatio: reset dates]
 
-
-[.dan]
-=== Existence proof
-
-* Department of Social Protection, Ireland
-** Implemented a Naked Objects system in 2004
-* Originally just for pensions and child benefit
-** Now caters for >75% of the benefits administered by the government
-* First release 2006, still releasing monthly
-* 100s of developers over that time, 3 vendors
-** multiple projects ongoing at any given time
-
-
-
-
-[.eoin]
-== Appendix: Maintainable Monoliths
-
-Current fashion is towards "microservices" but monoliths are perfectly maintainable if well built and evolved.
-
-* Genuine modularity and dependency management is key
-* Many types of coupling (message, data, control, ...)
-* Ensure high cohesion in modules, avoid "buckets of code"
-* Need to achieve measurement and visibility
-
-_Easier when code is partitioned - how does Isis do it?_
-
-[NOTE.speaker]
-====
-eoin: considering larger architectural concerns... modularity
-====
-
-
-
-[.dan]
-=== Modularity approach
-
-* The framework uses Apache Maven modules to manage compile-time dependencies
-** factor out generic technical/business modules
-* Each module with entities maps to its own (DB) schema
-** Foreign keys within schemas
-* Various techniques/features to decouple
-** eg good ole' dependency inversion principle
-** eg "table-of-two halves" pattern for polymorphic associations between entities in different modules
-
-
-
-[.dan]
-[%notitle]
-=== monoliths are maintainable if...
-
-
-image::modules/310.PNG[width=960px]
-
-
-[.dan]
-[%notitle]
-=== ... decomposed into modules
-
-image::modules/320.png[width=960px]
-
-
-
-
-[.dan]
-=== Pre-built modules
-
-* Technical modules
-** link:http://www.isisaddons.org[www.isisaddons.org]
-
-* Generic (business) sub-domains
-** link:http://catalog.incode.org[catalog.incode.org]
-
-
-
-
-[.dan]
-=== Modularity features of Apache Isis
-
-* **__Mixin__**s move functionality out of domain objects
-** composite UI creates a coherent whole for the end-user
-
-* **__Domain event__**s coordinate/veto interactions between different modules within the system
-
-* **__URN__**s, enabling polymorphic associations
-** enabler of the "table of two halves" pattern
-
-
-[.dan]
-=== Mixins
-
-image::modules/2016-todoapp-with-mixins.png[width=960px]
-
-
-[.dan]
-=== Mixins
-
-[source,java]
-----
-@Mixin
-public class ToDoItem_next {
-    private final ToDoItem toDoItem;
-    public ToDoItem_next(final ToDoItem toDoItem) { ... }
-
-    public ToDoItem $$() { ... }
-}
-----
-
-
-
-[.dan]
-=== Domain events
-
-[source,java]
-----
-public static class CompletedDomainEvent
-                    extends ToDoItem.ActionDomainEvent {}
-@Action(
-    domainEvent = CompletedDomainEvent.class
-)
-public ToDoItem completed() {
-    setComplete(true);
-}
-----
-
-
-[.dan]
-[%notitle]
-=== Domain events
-
-[source,java]
-----
-@DomainService
-public class ItemCompletedSubscriber {
-    @Subscribe
-    public void on(ToDoItem.CompletedDomainEvent ev) {
-        ToDoItem item = ev.getSource();
-        switch(ev.getEventPhase()) {
-            case HIDE:
-                ev.hide();
-                break;
-        }
-    }
-}
-----
-
-
-[.dan]
-[%notitle]
-=== Domain events
-
-[source,java]
-----
-@DomainService
-public class ItemCompletedSubscriber {
-    @Subscribe
-    public void on(ToDoItem.CompletedDomainEvent ev) {
-        ToDoItem item = ev.getSource();
-        switch(ev.getEventPhase()) {
-            case DISABLE:
-                ev.disable(...);
-                break;
-        }
-    }
-}
-----
-
-
-
-[.dan]
-[%notitle]
-=== Domain events
-
-[source,java]
-----
-@DomainService
-public class ItemCompletedSubscriber {
-    @Subscribe
-    public void on(ToDoItem.CompletedDomainEvent ev) {
-        ToDoItem item = ev.getSource();
-        switch(ev.getEventPhase()) {
-            case VALIDATE:
-                ev.invalidate(...);
-                break;
-        }
-    }
-}
-----
-
-
-
-
-[.dan]
-[%notitle]
-=== Domain events
-
-[source,java]
-----
-@DomainService
-public class ItemCompletedSubscriber {
-    @Subscribe
-    public void on(ToDoItem.CompletedDomainEvent ev) {
-        ToDoItem item = ev.getSource();
-        switch(ev.getEventPhase()) {
-            case HIDE:
-                break;
-            case DISABLE:
-                break;
-            case VALIDATE:
-                break;
-            case EXECUTING:
-                break;
-            case EXECUTED:
-                break;
-        }
-    }
-}
-----
-
-
-
-
-[.eoin]
-== Appendix: Alternative UIs
-
-A framework generated UI allows for change.  How does this work?
-
-* Replace the UI technology in use without affecting core code?
-* Provide more than one UI simultaneously?
-* What does Apache Isis assume about the UI technology it uses?
-
-
-
-
-[.dan]
-=== Alternative Generic UIs
-
-* Generic UIs basically iterate over the metamodel
-** Extensible via "facets" (extension object pattern)
-* Can run multiple UIs in parallel, eg Wicket and REST
-* The programming model aims to generify UI concepts
-** eg `@DomainObject(bounded=true)` => a drop-down
-* We will develop other UIs in the future, eg Vaadin, Polymer
-** It is viable to write your own generic UI
-
-
-[.dan]
-=== GES Consultor
-
-image::alternatives/gesconsultor.png[width=960px]
-
-
-
-[.dan]
-=== User Archetypes
-
-Generic UIs aren't appropriate in all cases
-
-image::alternatives/210.png[width=960px]
-
-
-
-
-[.dan]
-=== Alternative Custom UIs
-
-* The Wicket viewer can be customized heavily
-** chain of responsibliity pattern to identify each widget
-* Intend to integrate with link:http://invesdwin.de/nowicket/introduction[NoWicket] framework
-* More generally, use the REST API to build a custom UI
-
-
-
-
-[.dan]
-[%notitle]
-=== REST API (Swagger)
-
-image::cross-cutting/swagger.png[width=960px]
-
-
-
-
-
-[.dan]
-[%notitle]
-=== Example of a custom UI: contactapp
-
-link:images/alternatives/contactapp-1.mp4[example of a custom UI: contactapp]
-
-
-
-[.eoin]
-== Appendix: Coupling to the Framework?
-
-Frameworks imply high commitment - what is being coupled to Apache Isis like?
-
-* Constraints on the domain model code?
-* Degree of dependence domain code on Apache Isis?
-* Reuse Apache Isis domain models?
-* Replace 3rd party components?  (e.g. ORM library)
-
-
-
-
-[.dan]
-=== Decoupling from the framework
-
-[%step]
-
-* Domain objects have a compile-time coupling to the "applib" (for annotations), that's about all
-* Could deploy an Apache Isis app on Spring, for example
-** ... or any other framework providing runtime support for dependency injection and an ORM
-* Is dependent on DataNucleus ORM (JDO and JPA)
-** RDBMS and NoSQL, extensible via its StoreManager SPI
-** Could ignore, just use view models rather than entities
-
-
-[.dan]
-=== Beliefs/prejudices
-
-* Apache Isis is an opinionated framework
-* One opinion we hold is there is too much emphasis on technical concerns (and not enough on the domain)
-* Another: the UI is a fashion item; it doesn't make sense to try to infer the domain from the outside-in
-** start at the domain model, work your way out
-* A *_feedback loop_* is the most important thing
-** with *_testability_* a close second
-
-
-
-[.dan]
-[%notitle]
-=== An example exploration
-
-
-link:images/feedback-loop/colab2.mp4[example of feedback loops: colab2-exploration]
-
-
-
-[NOTE.speaker]
-====
-this took from 10am to 4pm (with an hour for lunch)... 5 hours.
-
-fixture scripts; choosing titles and icons ...
-====
-
-
-
-
-[.dan]
-=== Support for Testing
-
-* we set up test data for prototyping using a mini-framework called "fixture scripts"
-* we also have another small testing framework that emulates the UI
-** reuse the same fixtures as used in prototyping
-
-
-
-
-
-[.dan]
-[%notitle]
-=== Example for testing
-
-
-link:images/alternatives/contactapp-2.mp4[example for testing: some functionality within contactapp]
-
-
-
-[.dan]
-[%notitle]
-=== Fixture script
-
-A fixture script create data for the test scenario:
-
-[source,java]
-----
-DemoFixture fs;
-Contact contact;
-
-@Before
-public void setUp() throws Exception {
-    this.fs = new DemoFixture();
-    fixtureScripts.runFixtureScript(fs, null);
-
-    this.contact = fs.getContacts().get(0);
-}
-----
-
-
-[.dan]
-[%notitle]
-=== Emulating the UI
-
-The `WrapperFactory` "wraps" each domain object, enforces the rules of the generic UI:
-
-[source,java]
-----
-@Test
-public void name_already_in_use_by_contact() throws Exception {
-  // given
-  final String existingName =
-                        fs.getContacts().get(1).getName();
-  // expect
-  thrown.expect(InvalidException.class);
-  thrown.expectMessage("Reason: " +
-        "This name is already in use by another contact");
-  // when
-  wrap(this.contact).edit(existingName, null, null, null);
-}
-----
-
+* link:images/rad/estatio-layout.mp4[rapid app dev: estatio: layout]
 
 
 
