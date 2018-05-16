@@ -131,7 +131,8 @@ link:images/rad/estatio-resetDates.mp4[demo: UI derived from domain model]
 
 The tutorial consists of:
 
-* step by step instructions at http://github.com/danhaywood/isis-petclinic-docs[]
+* step by step instructions at
+https://danhaywood.gitlab.io/isis-petclinic-tutorial-docs[]
 
 * solutions for each step at http://github.com/danhaywood/isis-petclinic-tutorial[]
 
